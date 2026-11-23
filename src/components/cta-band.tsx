@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { CtaPressure } from "@/components/fx";
 
-export function CtaBand({ title = "Let's build something", accent = "together." }) {
+export function CtaBand({ title = "Let's build something", accent = "together.", pressure = false }) {
   return (
     <section className="relative overflow-hidden bg-cobalt text-white">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-10 px-6 py-24 md:flex-row md:items-end md:justify-between md:px-20 md:py-32">
-        <h2 className="display text-[clamp(3.5rem,9vw,8.5rem)]">
-          {title}
+        <h2 className="display w-full text-[clamp(3.5rem,9vw,8.5rem)]">
+          {pressure ? <CtaPressure /> : title}
+          {pressure && <span className="sr-only">{title}</span>}
           <span className="accent block normal-case text-deep">{accent}</span>
         </h2>
         <Link

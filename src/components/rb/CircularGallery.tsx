@@ -1048,7 +1048,9 @@ const CircularGallery = ({
 
     const onWheel = (event: WheelEvent) => {
       const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? view.height : 1;
-      const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+      // Local patch: only sideways wheel moves the gallery; vertical wheel scrolls the page.
+      if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) return;
+      const delta = event.deltaX;
       if (!delta) return;
       event.preventDefault();
       state.target += delta * unit * (settingsRef.current.scrollSpeed / 2);

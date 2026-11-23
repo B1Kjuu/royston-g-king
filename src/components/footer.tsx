@@ -9,19 +9,19 @@ export function Footer() {
           <p className="display text-4xl text-white md:text-6xl">Royston G King</p>
           <p className="accent mt-2 text-2xl text-ice">Positive wisdom, gone viral.</p>
         </div>
-        <ul className="space-y-2 text-[15px]">
+        <ul className="text-[15px]">
           {nav.map((n) => (
             <li key={n.href}>
-              <Link href={n.href} className="hover:text-white">
+              <Link href={n.href} className="inline-block py-2.5 hover:text-white">
                 {n.label}
               </Link>
             </li>
           ))}
         </ul>
-        <ul className="space-y-2 text-[15px]">
+        <ul className="text-[15px]">
           {socials.map((s) => (
             <li key={s.platform}>
-              <a href={s.href} target="_blank" rel="noreferrer" className="hover:text-white">
+              <a href={s.href} target="_blank" rel="noreferrer" className="inline-block py-2.5 hover:text-white">
                 {s.platform}
               </a>
             </li>

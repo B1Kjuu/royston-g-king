@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ScrollReveal from "@/components/rb/ScrollReveal";
-import { PhotoWall } from "@/components/photo-wall";
+import { Glare, QuoteBand, HeroHeadline, HeroRays, HeroStack, OfferSwap, PhotoGallery, StarButton } from "@/components/fx";
 import { CtaBand } from "@/components/cta-band";
 import { FadeIn, OutletLoop, Stat, VelocityBand } from "@/components/motion";
 import { headshot, offers, plaques, roles, socials } from "@/lib/content";
@@ -15,9 +15,11 @@ const stats = [
 ];
 
 const heroPhotos = [
-  { src: "/site/img41.jpg", alt: "Royston G King with Will Smith", cls: "-rotate-6 left-0 top-10" },
-  { src: "/site/img19.jpg", alt: "Royston G King with Gordon Ramsay", cls: "rotate-3 right-0 top-0 z-10" },
-  { src: "/site/img35.jpg", alt: "Royston G King with Tim Cook", cls: "-rotate-2 left-[18%] bottom-0 z-20" },
+  { src: "/site/img41.jpg", alt: "Royston G King with Will Smith" },
+  { src: "/site/img19.jpg", alt: "Royston G King with Gordon Ramsay" },
+  { src: "/site/img35.jpg", alt: "Royston G King with Tim Cook" },
+  { src: "/site/img36.jpg", alt: "Royston G King with Paris Hilton" },
+  { src: "/site/img05.jpg", alt: "Royston G King at an event" },
 ];
 
 export default function Home() {
@@ -25,7 +27,8 @@ export default function Home() {
     <>
       {/* Hero: his name, the promise, and the proof in photos */}
       <section className="ice-glow relative overflow-hidden text-white">
-        <div className="mx-auto grid max-w-[1440px] items-center gap-16 px-6 pt-32 pb-20 lg:grid-cols-[1.1fr_1fr] md:px-20 md:pt-40 md:pb-28">
+        <HeroRays />
+        <div className="relative mx-auto grid max-w-[1440px] items-center gap-16 px-6 pt-32 pb-20 lg:grid-cols-[1.1fr_1fr] md:px-20 md:pt-40 md:pb-28">
           <div className="rise">
             <div className="flex items-center gap-4">
               <Image
@@ -41,21 +44,16 @@ export default function Home() {
                 <p className="caps text-sm text-ice">Forbes 30 Under 30 · Monaco</p>
               </div>
             </div>
-            <h1 className="display mt-10 text-[clamp(3.75rem,8vw,7.5rem)]">
-              I make positive wisdom
-              <span className="accent block pt-2 text-[1.1em] normal-case leading-none text-ice">go viral.</span>
-            </h1>
+            <HeroHeadline />
             <p className="mt-8 max-w-[34ch] text-lg text-mist md:text-xl">
               And help people and brands grow wealth and fame.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-cobalt px-7 py-4 font-semibold transition-[background-color,transform] duration-200 hover:bg-[#3b6fff] active:scale-[0.97]"
-              >
-                Work with me
-                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
+              <StarButton href="/contact">
+                <span className="inline-flex items-center gap-2 px-3 py-1.5">
+                  Work with me <ArrowRight className="size-4" />
+                </span>
+              </StarButton>
               <a
                 href="https://www.youtube.com/@RoystonGKingSuccess"
                 target="_blank"
@@ -67,22 +65,14 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto aspect-square w-full max-w-[560px]">
+          <div className="relative mx-auto aspect-square w-full max-w-[420px]">
             <div className="absolute inset-10 rounded-full bg-ice/25 blur-3xl" aria-hidden />
-            {heroPhotos.map((p, i) => (
-              <div
-                key={p.src}
-                className={`rise absolute w-[58%] overflow-hidden rounded-2xl border-4 border-white shadow-[0_30px_60px_-20px_rgb(0_0_0/0.7)] transition-transform duration-500 hover:rotate-0 ${p.cls}`}
-                style={{ animationDelay: `${150 + i * 120}ms` }}
-              >
-                <Image src={p.src} alt={p.alt} width={600} height={600} className="float aspect-square object-cover" style={{ animationDelay: `${i * -2}s` }} />
-              </div>
-            ))}
+            <HeroStack items={heroPhotos} />
           </div>
         </div>
 
         {/* Real outlet logos from his site */}
-        <div className="border-t border-white/10 bg-deep">
+        <div className="relative border-t border-white/10 bg-deep">
           <p className="caps pt-10 text-center text-sm text-mist">Featured in</p>
           <OutletLoop />
         </div>
@@ -117,7 +107,9 @@ export default function Home() {
       <section className="border-t border-line bg-white">
         <div className="mx-auto grid max-w-[1440px] items-center gap-14 px-6 py-24 md:px-20 md:py-32 lg:grid-cols-[1fr_1.1fr]">
           <FadeIn className="overflow-hidden rounded-2xl">
+            <Glare>
             <Image src={plaques} alt="Royston G King's YouTube award plaques" width={1400} height={1400} className="h-full w-full object-cover" />
+            </Glare>
           </FadeIn>
           <div>
             <h2 className="display text-[clamp(3rem,6vw,5.5rem)]">
@@ -142,7 +134,8 @@ export default function Home() {
           <h2 className="display text-[clamp(3rem,6vw,5.5rem)]">
             Bring Royston <span className="accent normal-case text-ice">in.</span>
           </h2>
-          <FadeIn><ul className="mt-14 border-t border-white/15">
+          <div className="mt-14 grid items-center gap-16 lg:grid-cols-[1.3fr_1fr]">
+          <FadeIn><ul className="border-t border-white/15">
             {offers.map((o) => (
               <li key={o.title}>
                 <Link
@@ -159,6 +152,10 @@ export default function Home() {
               </li>
             ))}
           </ul></FadeIn>
+          <div className="relative hidden h-[460px] lg:block">
+            <OfferSwap />
+          </div>
+          </div>
         </div>
       </section>
 
@@ -169,25 +166,13 @@ export default function Home() {
             In the room <span className="accent normal-case text-cobalt">with</span>
           </h2>
           <div className="mt-12">
-            <PhotoWall />
+            <PhotoGallery />
           </div>
         </div>
       </section>
 
       {/* Pull quote */}
-      <section className="bg-white px-6 py-28 text-center md:py-40">
-        <ScrollReveal
-          baseOpacity={0.15}
-          enableBlur
-          baseRotation={0}
-          blurStrength={4}
-          containerClassName="mx-auto max-w-[20ch]"
-          textClassName="accent text-[clamp(2.75rem,6vw,5.5rem)] leading-[1.02] font-normal"
-        >
-          “One of the world’s most sought-after strategists.”
-        </ScrollReveal>
-        <p className="caps mt-8 text-sm text-muted">As described in the press</p>
-      </section>
+      <QuoteBand />
 
       {/* Follow */}
       <section className="mx-auto max-w-[1440px] px-6 py-24 md:px-20 md:py-32">
@@ -212,7 +197,7 @@ export default function Home() {
         </ul></FadeIn>
       </section>
 
-      <CtaBand />
+      <CtaBand pressure />
     </>
   );
 }

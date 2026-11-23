@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ArrowUpRight } from "lucide-react";
 import { CtaBand } from "@/components/cta-band";
+import { Spotlight } from "@/components/fx";
 import { highlights, pressByYear } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -23,9 +24,11 @@ export default function Press() {
         </div>
         <ul className="mx-auto grid max-w-[1440px] border-t border-white/10 sm:grid-cols-2 lg:grid-cols-4">
           {highlights.map((h) => (
-            <li key={h.title} className="border-b border-white/10 px-6 py-10 sm:border-r md:px-20 lg:px-10 lg:first:pl-20">
-              <p className="caps text-sm text-ice">{h.label}</p>
-              <p className="display mt-3 text-4xl">{h.title}</p>
+            <li key={h.title} className="border-b border-white/10 sm:border-r">
+              <Spotlight className="h-full px-6 py-10 md:px-10">
+                <p className="caps text-sm text-ice">{h.label}</p>
+                <p className="display mt-3 text-4xl">{h.title}</p>
+              </Spotlight>
             </li>
           ))}
         </ul>

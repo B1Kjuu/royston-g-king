@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Cormorant, Instrument_Serif, Inter } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { Sparks } from "@/components/fx";
 import { site } from "@/lib/content";
 import "./globals.css";
 
@@ -31,7 +32,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-dvh flex-col">
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <Sparks>{children}</Sparks>
+        </main>
         <Footer />
       </body>
     </html>
